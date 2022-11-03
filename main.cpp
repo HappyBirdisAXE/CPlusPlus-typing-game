@@ -78,7 +78,7 @@ int main() {
     TotalTime += TimePassed;
 
     WordCount++;
-    if (WordCount == EasyWordCount)
+    if (WordCount == WordMax)
       GameOver = true;
 
   } while (!(GameOver));
