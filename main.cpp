@@ -3,7 +3,7 @@
 #include <string>
 #include <thread>
 
-#include "menu.h""
+#include "menu.h"
 #include "words.h"
 
 using namespace std;
@@ -73,7 +73,7 @@ int main() {
     TimePassed =
         (chrono::duration_cast<chrono::milliseconds>(Duration).count() * -1);
 
-    cout << "millieconds passed: " << TimePassed << endl;
+    cout << "Your Time (Milliseconds): " << TimePassed << endl;
 
     TotalTime += TimePassed;
 
