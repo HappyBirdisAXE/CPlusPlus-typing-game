@@ -3,8 +3,8 @@
 #include <string>
 #include <thread>
 
-#include "menu.h"
-#include "words.h"
+#include "Headers/words.hpp"
+#include "Headers/menu.hpp"
 
 using namespace std;
 
@@ -12,7 +12,8 @@ int main() {
   bool Correct = false;
   bool GameOver = false;
 
-  int TimePassed = 0;
+  int TimePassedInSeconds = 0;
+  int TimePassedInMilliseconds = 0;
   int WordCount = 0;
   int WordMax;
   int Option;
@@ -45,7 +46,7 @@ int main() {
   
   cout << "Starting game, be ready...";
   cout << endl;
-  std::this_thread::sleep_for(3s);
+  this_thread::sleep_for(3s);
   
   do {
     Correct = false;
@@ -69,13 +70,16 @@ int main() {
 
     auto End = chrono::steady_clock::now();
     chrono::duration<double> Duration = Start - End;
-    TimePassed +=
-        (chrono::duration_cast<chrono::milliseconds>(Duration).count() * -1);
+
+    TimePassedInMilliseconds +=
+      (chrono::duration_cast<chrono::milliseconds>(Duration).count() * -1);
+    TimePassedInSeconds +=
+        (chrono::duration_cast<chrono::seconds>(Duration).count() * -1);
     
     WordCount++;
     if (WordCount == WordMax)
       GameOver = true;
 
   } while (!(GameOver));
-  cout << "Your Time (Milliseconds): " << TimePassed << endl;
+  cout << "Your Time: " << PrintTime(TimePassedInSeconds, TimePassedInMilliseconds) << endl;
 }
