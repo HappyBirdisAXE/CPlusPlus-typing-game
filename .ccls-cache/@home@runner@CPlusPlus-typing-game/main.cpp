@@ -3,7 +3,7 @@
 #include <string>
 #include <thread>
 
-#include "menu.h""
+#include "menu.h"
 #include "words.h"
 
 using namespace std;
@@ -13,7 +13,6 @@ int main() {
   bool GameOver = false;
 
   int TimePassed = 0;
-  int TotalTime = 0;
   int WordCount = 0;
   int WordMax;
   int Option;
@@ -45,6 +44,7 @@ int main() {
       }
   
   cout << "Starting game, be ready...";
+  cout << endl;
   std::this_thread::sleep_for(3s);
   
   do {
@@ -69,16 +69,13 @@ int main() {
 
     auto End = chrono::steady_clock::now();
     chrono::duration<double> Duration = Start - End;
-    TimePassed =
+    TimePassed +=
         (chrono::duration_cast<chrono::milliseconds>(Duration).count() * -1);
-
-    cout << "Milliseconds passed: " << TimePassed << endl;
-
-    TotalTime += TimePassed;
-
+    
     WordCount++;
-    if (WordCount == EasyWordCount)
+    if (WordCount == WordMax)
       GameOver = true;
 
   } while (!(GameOver));
+  cout << "Your Time (Milliseconds): " << TimePassed << endl;
 }

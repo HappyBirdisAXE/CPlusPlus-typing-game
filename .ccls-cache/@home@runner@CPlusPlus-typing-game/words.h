@@ -8,9 +8,10 @@ class Word
 public:
 static std::string GenerateWord()
 {
-  std::default_random_engine Generate;
-  std::uniform_int_distribution<int> dist(0,29);
-  int IndexNumber = dist(Generate);
+  std::random_device Random;
+  std::mt19937 Generator(Random());
+  std::uniform_int_distribution<int> Dist(0,29);
+  int IndexNumber = Dist(Generator);
   Word word;
   
   std::string PickedWord = word.Words[IndexNumber];

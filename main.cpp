@@ -13,7 +13,6 @@ int main() {
   bool GameOver = false;
 
   int TimePassed = 0;
-  int TotalTime = 0;
   int WordCount = 0;
   int WordMax;
   int Option;
@@ -70,16 +69,13 @@ int main() {
 
     auto End = chrono::steady_clock::now();
     chrono::duration<double> Duration = Start - End;
-    TimePassed =
+    TimePassed +=
         (chrono::duration_cast<chrono::milliseconds>(Duration).count() * -1);
-
-    cout << "Your Time (Milliseconds): " << TimePassed << endl;
-
-    TotalTime += TimePassed;
-
+    
     WordCount++;
     if (WordCount == WordMax)
       GameOver = true;
 
   } while (!(GameOver));
+  cout << "Your Time (Milliseconds): " << TimePassed << endl;
 }
